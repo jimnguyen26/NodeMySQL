@@ -12,15 +12,15 @@ CREATE TABLE products(
 );
 
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES("Scarpa Vapors", "climbing shoes", 164.95, 20),
-    ("Scarpa Force V", "climbing shoes", 138.95, 25),
-	("La Sportiva Solution", "climbing shoes", 180.00, 30),
-    ("Five Ten Moccasym", "climbing shoes", 124.95, 35),
-    ("Evolv Shaman", "climbing shoes", 159.95, 40),
-    ("Black Diamond Mission Jacket", "men's clothing", 598.95, 10),
-    ("Mountain Hardwear Absolute Zero Down Parka", "men's clothing", 799.95, 15),
-    ("Arc'teryx Fission SV", "men's clothing", 689.00, 20),
-    ("Arc'teryx Atom LT Hooded", "men's clothing", 259.00, 25),
-    ("Patagonia Nano Puff", "men's clothing", 219.00, 30);
+VALUES("Scarpa Vapors", "Climbing Shoes", 164.95, 20),
+    ("Scarpa Force V", "Climbing Shoes", 138.95, 25),
+	("La Sportiva Solution", "Climbing Shoes", 180.00, 30),
+    ("Five Ten Moccasym", "Climbing Shoes", 124.95, 35),
+    ("Evolv Shaman", "Climbing Shoes", 159.95, 40),
+    ("Black Diamond Mission Jacket", "Men's Clothing", 598.95, 10),
+    ("Mountain Hardwear Absolute Zero Down Parka", "Men's Clothing", 799.95, 15),
+    ("Arc'teryx Fission SV", "Men's Clothing", 689.00, 20),
+    ("Arc'teryx Atom LT Hooded", "Men's Clothing", 259.00, 25),
+    ("Patagonia Nano Puff", "Men's Clothing", 219.00, 30);
 
 SELECT * FROM products;
