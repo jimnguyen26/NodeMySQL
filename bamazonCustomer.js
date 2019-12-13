@@ -13,6 +13,16 @@ const connection = mysql.createConnection({
 
 connection.connect(err => {
     if (err) throw err;
-    console.log("successful");
-    
+    console.log(`You have been connected to 
+    threadId: ${connection.threadId}`);
+    displayTable();
 });
+
+displayTable = table => {
+    connection.query("SELECT * FROM products", table, (err, res) => {
+        for (let i = 0; i<res.length; i++) {
+            console.log(res[i].product_name);
+            
+        }
+    });
+};
