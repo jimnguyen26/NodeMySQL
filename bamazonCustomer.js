@@ -35,6 +35,9 @@ var promptCustomer = function(res) {
         message: "What would you like to purchase? [Exit with X]"
     }]).then(function(answer) {
         var correct = false;
+        if(answer.choice.toUpperCase()=="X") {
+            process.exit();
+        }
         for (var i = 0; i < res.length; i++) {
             if(res[i].productname == answer.choice) {
                 correct = true;
@@ -65,6 +68,10 @@ var promptCustomer = function(res) {
                     };
                 });
             };
+        }
+        if(i==res.length&& correct==false) {
+            console.log("Not a valid selection!");
+            promptCustomer(res);
         }
     });
 };
