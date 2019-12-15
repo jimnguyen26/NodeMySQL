@@ -3,15 +3,15 @@ CREATE DATABASE bamazon_db;
 USE bamazon_db;
 
 CREATE TABLE products(
-    item_id INTEGER AUTO_INCREMENT NOT NULL,
-    product_name VARCHAR(50) NOT NULL,
-    department_name VARCHAR(50) NOT NULL,
+    itemid INTEGER AUTO_INCREMENT NOT NULL,
+    productname VARCHAR(50) NOT NULL,
+    departmentname VARCHAR(50) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
-    stock_quantity INTEGER(10) NOT NULL,
-    PRIMARY KEY (item_id)
+    stockquantity INTEGER(10) NOT NULL,
+    PRIMARY KEY (itemid)
 );
 
-INSERT INTO products(product_name, department_name, price, stock_quantity)
+INSERT INTO products(productname, departmentname, price, stockquantity)
 VALUES("Scarpa Vapors", "Climbing Shoes", 164.95, 20),
     ("Scarpa Force V", "Climbing Shoes", 138.95, 25),
 	("La Sportiva Solution", "Climbing Shoes", 180.00, 30),
