@@ -11,14 +11,14 @@ const connection = mysql.createConnection({
     database: "bamazon_db"
 });
 
-connection.connect(function(err) {
+connection.connect(err => {
     if (err) throw err;
     console.log(`You have been connected to 
     threadId: ${connection.threadId}`);
     displayTable();
 });
 
-const displayTable = function() {
+displayTable = table => {
     connection.query("SELECT * FROM products", function(err, res) {
         for (let i = 0; i < res.length; i++) {
             console.log(res[i].item_id+" -- "+res[i].product_name+" -- "+res[i].department_name+
@@ -28,14 +28,14 @@ const displayTable = function() {
     });
 };
 
-const promptCustomer = function(res) {
+promptCustomer = res => {
     inquirer.prompt([{
         type: 'input',
         name: 'choice',
         message: "What would you like to purchase? [Exit with X]"
     }]).then(function(answer) {
         let correct = false;
-        if(answer.choice.toUpperCase()=="X") {
+        if(answer.choice.toUpperCase() == "X") {
             process.exit();
         }
         for (var i = 0; i < res.length; i++) {
@@ -59,18 +59,18 @@ const promptCustomer = function(res) {
                         connection.query("UPDATE products SET stock_quantity='"
                         + (res[id].stock_quantity-answer.quant)+"' WHERE product_name='"
                         + product + "'", function(err, res2) {
-                            console.log("Product Purchased!");
+                            console.log("Product Purchased!\n");
                             displayTable();
                         })
                     } else {
-                        console.log("Not a valid selection!");
+                        console.log("Please enter a valid selection!\n");
                         promptCustomer(res);
                     };
                 });
             };
         }
         if(i == res.length && correct == false) {
-            console.log("Not a valid selection!");
+            console.log("Not a valid selection!\n");
             promptCustomer(res);
         }
     });
