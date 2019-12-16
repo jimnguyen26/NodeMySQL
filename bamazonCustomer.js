@@ -14,12 +14,12 @@ const connection = mysql.createConnection({
 connection.connect(err => {
     if (err) throw err;
     console.log(`You have been connected to 
-    threadId: ${connection.threadId}`);
-    displayTable();
+    threadId: ${connection.threadId}\n`);
+    displayTable("gear");
 });
 
 displayTable = table => {
-    connection.query("SELECT * FROM products", function(err, res) {
+    connection.query("SELECT * FROM products", table, (err, res) => {
         for (let i = 0; i < res.length; i++) {
             console.log(res[i].item_id+" -- "+res[i].product_name+" -- "+res[i].department_name+
             " -- "+res[i].price+" -- "+res[i].stock_quantity+"\n");
@@ -63,7 +63,7 @@ promptCustomer = res => {
                             displayTable();
                         })
                     } else {
-                        console.log("Please enter a valid selection!\n");
+                        console.log("Insufficient quantity!\n");
                         promptCustomer(res);
                     };
                 });
