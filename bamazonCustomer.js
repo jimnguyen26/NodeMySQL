@@ -1,9 +1,9 @@
 // console.log(process.argv);
 
-var inquirer = require("inquirer");
-var mysql = require("mysql");
+const inquirer = require("inquirer");
+const mysql = require("mysql");
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
@@ -18,9 +18,9 @@ connection.connect(function(err) {
     displayTable();
 });
 
-var displayTable = function() {
+const displayTable = function() {
     connection.query("SELECT * FROM products", function(err, res) {
-        for (var i = 0; i<res.length; i++) {
+        for (let i = 0; i < res.length; i++) {
             console.log(res[i].item_id+" -- "+res[i].product_name+" -- "+res[i].department_name+
             " -- "+res[i].price+" -- "+res[i].stock_quantity+"\n");
         }
@@ -28,21 +28,21 @@ var displayTable = function() {
     });
 };
 
-var promptCustomer = function(res) {
+const promptCustomer = function(res) {
     inquirer.prompt([{
         type: 'input',
         name: 'choice',
         message: "What would you like to purchase? [Exit with X]"
     }]).then(function(answer) {
-        var correct = false;
+        let correct = false;
         if(answer.choice.toUpperCase()=="X") {
             process.exit();
         }
         for (var i = 0; i < res.length; i++) {
             if(res[i].product_name == answer.choice) {
                 correct = true;
-                var product = answer.choice;
-                var id = i;
+                const product = answer.choice;
+                const id = i;
                 inquirer.prompt({
                     type: "input",
                     name: "quant",
@@ -54,11 +54,11 @@ var promptCustomer = function(res) {
                             return false;
                         }
                     }
-                }).then(function(answer){
-                    if((res[id].stock_quantity-answer.quant)>0){
+                }).then(function(answer) {
+                    if((res[id].stock_quantity - answer.quant) > 0) {
                         connection.query("UPDATE products SET stock_quantity='"
                         + (res[id].stock_quantity-answer.quant)+"' WHERE product_name='"
-                        + product + "'", function(err, res2){
+                        + product + "'", function(err, res2) {
                             console.log("Product Purchased!");
                             displayTable();
                         })
@@ -69,7 +69,7 @@ var promptCustomer = function(res) {
                 });
             };
         }
-        if(i==res.length&& correct==false) {
+        if(i == res.length && correct == false) {
             console.log("Not a valid selection!");
             promptCustomer(res);
         }
